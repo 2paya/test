@@ -24,7 +24,7 @@ class YandexSearch(unittest.TestCase):
         input_field.send_keys('Тензор')
         assert 'suggest' in driver.page_source
 
-    # Проверка, что первые пять результатов содержат ссылку
+    # Проверка, что результаты содержат ссылку
     def test_03_check_result(self):
 
         driver = self.driver
@@ -34,7 +34,7 @@ class YandexSearch(unittest.TestCase):
         input_field.send_keys(Keys.ENTER)
         links = driver.find_elements_by_class_name('Path-Item')
         for link in links:
-            while link != links[5]:
+            #while link != links[5]:
                 assert "tensor.ru" in link.text
 
     def tearDown(self):
@@ -68,7 +68,7 @@ class YandexImage(unittest.TestCase):
         assert 'https://yandex.ru/images/' in driver.current_url
 
     # Проверка, при нажатии на первую категорю, в поле поиска верный текст
-    def test_06(self):
+    def test_06_open_category(self):
 
         driver = self.driver
         driver.get('https://yandex.ru')
@@ -82,7 +82,7 @@ class YandexImage(unittest.TestCase):
         assert category_name == input_field
 
     # Проверка, при нажатии на картинку она открывается
-    def test_07(self):
+    def test_07_open_image(self):
 
         driver = self.driver
         driver.get('https://yandex.ru')
@@ -99,7 +99,7 @@ class YandexImage(unittest.TestCase):
         assert title_first_image in driver.page_source
 
 # Проверка, при нажатии кнопки вперед картинка изменяется
-#    def test_08(self):
+#    def test_08_switch_image(self):
 #
 #       driver = self.driver
 #       driver.get('https://yandex.ru')
